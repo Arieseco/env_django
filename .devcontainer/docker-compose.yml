@@ -6,11 +6,8 @@ services:
     container_name: 'django_db'
     expose: 
       - "5432"
-    environment:
-      - TZ=Asia/Tokyo
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - db-variables.env
     volumes:
       - ../db/database:/var/lib/postgresql/data
       - ../db/init:/docker-entrypoint-initdb.d  
@@ -20,8 +17,8 @@ services:
     container_name: 'django_web'
     ports:
       - 8000:8000
-    environment:
-      - DEBUG=1
+    env_file:
+      - web-variables.env
     depends_on:
       - db
     stdin_open: true

@@ -1,2 +1,10 @@
 /db/database
 /web/log
+/project/__pycache__
+web/app/__pycache__/
+web/app/migrations/__pycache__/
+web/project/__pycache__/
+web/project/properties/__pycache__/
+web/db.sqlite3
+.devcontainer/web-variables.env
+.devcontainer/db-variables.env
