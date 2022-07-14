@@ -8,3 +8,12 @@ web/project/properties/__pycache__/
 web/db.sqlite3
 .devcontainer/web-variables.env
 .devcontainer/db-variables.env
+web/project/properties/create_db.py
+web/project/properties/create_table.py
+web/project/properties/insert_table.py
+web/project/properties/secrets.db
+web/secrets/db.sqlite3
+web/secrets/secrets.db
+/secrests
+web/secrets/init.py
+web/secrets/TEST.db

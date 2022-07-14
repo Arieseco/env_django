@@ -9,7 +9,10 @@ import os
 
 from .properties.base import Base
 
-base = Base()
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get('DEBUG')
+
+base = Base(DEBUG)
 
 # settings.pyのディレクトリ X = os.path.abspath(__file__)
 # projectフォルダのディレクトリ Y = os.path.dirname(X)
@@ -17,10 +20,7 @@ base = Base()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+SECRET_KEY = base.get_secretkey()
 
 ALLOWED_HOSTS = base.get_allowed_host()
 
@@ -72,7 +72,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres', # データベース名
         'USER': 'postgres', # 接続ユーザ名
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'PASSWORD': base.get_database_password(),
         'HOST': 'django_db', # DBのホスト名
         'PORT': '5432', # DBのポート番号
     }
